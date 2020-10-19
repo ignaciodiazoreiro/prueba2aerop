@@ -1,0 +1,48 @@
+﻿@model Aviacion_Civil_Web.ViewModels.ConsultasCantidadPasajerosViewModel
+@{
+    ViewBag.Title = "Consulta1View";
+    string TipoVuelo = Model.LlegadaOSalida + "s";
+}
+
+<h2> @TipoVuelo entre @Html.DisplayFor(modelItem => Model.PrimeraFecha) y @Html.DisplayFor(modelItem => Model.SegundaFecha) </h2>
+
+<br />
+
+@if (Model.PasajerosTotal == null)
+{
+    <h4>No hay vuelos con los criterios seleccionados!</h4>
+}
+else
+{
+    <table class="table table-bordered table-striped" style="background-color: white; width:75%;">
+        <thead>
+            <tr>
+
+                <th class="col-md-5">Nombre del Aeropuerto</th>
+                <th class="col-md-3">Cantidad de Pasajeros</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ResultadoConsulta)
+            {
+                <tr>
+                    @if (item.Nombre != null)
+                    {
+                        <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                    }
+                    else
+                    {
+                        <td>Todos los aeropuertos</td>
+                    }
+
+                    <td>@Html.DisplayFor(modelItem => item.CantidadPasajeros)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<br />
+<div class="form-actions no-color">
+    @Html.ActionLink("Volver", "CntPasajerosLlegadaSalida", null, new { @class = "botonGeneral colorGris" })
+</div>
+<br /><br />

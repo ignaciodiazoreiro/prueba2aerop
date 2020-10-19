@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Aviacion_Civil_Web.Models.Rutas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Rutas</h2>
+<br/>
+
+<p>
+    @Html.ActionLink("Crear Nueva Ruta", "Create", null, new { @class = "botonGeneral botonCrear" })
+
+</p>
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-5">
+            <div class="card">
+                <div class="card-body">
+                    <img src="../Img/ruta.png" class="card-img-top" alt="...">
+                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.RutaID) </h4>
+                    <p class="card-text"><small class="text-muted">Compania: @Html.DisplayFor(modelItem => item.Compania), Pais: @Html.DisplayFor(modelItem => item.Pais)</small></p>
+                    <p class="card-text"><small class="text-muted">Tipo: @Html.DisplayFor(modelItem => item.Tipo), Dia: @Html.DisplayFor(modelItem => item.DiaSemana)</small></p>
+                    <p class="card-text">
+
+                        @Html.ActionLink("Consultar", "Details", new { id = item.RutaID }, new { @class = "botonGeneral colorCeleste" })
+
+                        @Html.ActionLink("Modificar", "Edit", new { id = item.RutaID }, new { @class = "botonGeneral colorCeleste" })
+
+                    </p>
+                    <p class="card-text marginElim">
+
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.RutaID }, new { @class = "botonGeneral colorCeleste" })
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    }
+
+</div>

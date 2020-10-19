@@ -1,0 +1,61 @@
+﻿@model Aviacion_Civil_Web.Models.Rutas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles Ruta</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Compania)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Compania)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaSemana)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaSemana)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pais)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pais)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CapacidadMaxima)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CapacidadMaxima)
+        </dd>
+
+    </dl>
+</div>
+<div class="col-md-offset-1 col-md-11">
+    @Html.ActionLink("Editar", "Edit", new { id = Model.RutaID }, new { @class = "botonGeneral colorVerde" })
+</div>
+<br /><br />
+<div class="form-actions no-color">
+    @Html.ActionLink("Volver", "Index", null, new { @class = "botonGeneral colorGris" })
+</div>
+<br /><br />

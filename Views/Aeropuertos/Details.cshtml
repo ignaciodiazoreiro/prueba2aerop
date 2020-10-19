@@ -1,0 +1,45 @@
+﻿@model Aviacion_Civil_Web.Models.Aeropuertos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles Aeropuerto</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Habilitado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Habilitado)
+        </dd>
+
+    </dl>
+</div>
+<div class="col-md-offset-1 col-md-11">
+    @Html.ActionLink("Editar", "Edit", new { id = Model.AeropuertoID }, new { @class = "botonGeneral colorVerde" })
+</div>
+<br /><br />
+<div class="form-actions no-color">
+    @Html.ActionLink("Volver", "Index", null, new { @class = "botonGeneral colorGris" })
+</div>
+<br /><br />

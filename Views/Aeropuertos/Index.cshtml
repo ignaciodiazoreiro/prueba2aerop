@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Aviacion_Civil_Web.Models.Aeropuertos>
+
+@{
+    ViewBag.Title = "Aeropuertos";
+}
+
+<h2>Aeropuertos</h2><br/>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Aeropuerto", "Create", null, new { @class = "botonGeneral botonCrear" })
+
+</p>
+    
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-5">
+            <div class="card">
+                <div class="card-body">
+                    <img src="../Img/aeropuertos.jpg" class="card-img-top" alt="...">
+                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.AeropuertoID) @Html.DisplayFor(modelItem => item.Nombre) </h4>
+                    <p class="card-text"><small class="text-muted">@Html.DisplayFor(modelItem => item.Direccion) <br/>  Habilitado: @Html.DisplayFor(modelItem => item.Habilitado)</small></p>
+                    <p class="card-text">
+
+                        @Html.ActionLink("Consultar", "Details", new { id = item.AeropuertoID }, new { @class = "botonGeneral colorCeleste" })
+
+                        @Html.ActionLink("Modificar", "Edit", new { id = item.AeropuertoID }, new { @class = "botonGeneral colorCeleste" })
+
+                    </p>
+                    <p class="card-text marginElim">
+                       
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.AeropuertoID }, new { @class = "botonGeneral colorCeleste" })
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    }
+
+</div>

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Aviacion_Civil_Web.Models.Vuelos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Vuelos</h2>
+<br/>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Vuelo", "Create", null, new { @class = "botonGeneral botonCrear" })
+
+</p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-5">
+            <div class="card">
+                <div class="card-body">
+                    <img src="../Img/vuelo.jpg" class="card-img-top" alt="...">
+                    <h4 class="card-title">@Html.DisplayFor(modelItem => item.Aeropuertos.Nombre) </h4>
+                    <p class="card-text"><small class="text-muted">Ruta: @Html.DisplayFor(modelItem => item.Rutas.RutaID), País: @Html.DisplayFor(modelItem => item.Aeropuertos.Direccion)</small></p>
+                    <p class="card-text"><small class="text-muted">Pasajeros: @Html.DisplayFor(modelItem => item.Pasajeros), Fecha: @Html.DisplayFor(modelItem => item.Fecha) </small></p>
+                </div>
+            </div>
+
+        </div>
+    }
+
+</div>

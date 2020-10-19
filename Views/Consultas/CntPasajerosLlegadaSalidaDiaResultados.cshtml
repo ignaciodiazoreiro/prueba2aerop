@@ -1,0 +1,68 @@
+﻿@model Aviacion_Civil_Web.ViewModels.ConsultasCntPasajerosDiaViewModel
+@{
+    string TipoVuelo = Model.LlegadaOSalida + "s";
+    string diasDisplay;
+    if(Model.DiaEspecifico == "ES"){
+        diasDisplay = "Lunes a Viernes";
+    }else if(Model.DiaEspecifico == "FS"){
+        diasDisplay = "Sabado y Domingo";
+    }else if (Model.DiaEspecifico == "Todos"){
+        diasDisplay = "Lunes a Domingo";
+    }else if(Model.DiaEspecifico =="Monday"){
+        diasDisplay = "Lunes";
+    }else if (Model.DiaEspecifico == "Tuesday"){
+        diasDisplay = "Martes";
+    }else if (Model.DiaEspecifico == "Wednesday"){
+        diasDisplay = "Miércoles";
+    }else if (Model.DiaEspecifico == "Thursday"){
+        diasDisplay = "Jueves";
+    }else if (Model.DiaEspecifico == "Friday"){
+        diasDisplay = "Viernes";
+    }else if (Model.DiaEspecifico == "Saturday"){
+        diasDisplay = "Sábado";
+    }else{
+        diasDisplay = "Domingo";
+    }
+}
+
+<h2> @TipoVuelo entre @Html.DisplayFor(modelItem => Model.PrimeraFecha) y @Html.DisplayFor(modelItem => Model.SegundaFecha) </h2>
+
+<h3> En los siguientes días: @diasDisplay</h3>
+
+<br />
+
+@if (Model.PasajerosTotal == null)
+{
+    <h4>No hay vuelos con los criterios seleccionados!</h4>
+}
+else
+{
+    <table class="table table-bordered table-striped" style="background-color: white; width:75%;">
+        <thead>
+            <tr>
+
+                <th class="col-md-5">Nombre del Aeropuerto</th>
+                <th class="col-md-3">Cantidad de Pasajeros</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @if (Model.ResultadoConsulta.Nombre != null)
+                {
+                    <td>@Html.DisplayFor(modelItem => Model.ResultadoConsulta.Nombre)</td>
+                }
+                else
+                {
+                    <td>Todos los aeropuertos</td>
+                }
+                    <td> @Html.DisplayFor(modelItem => Model.PasajerosTotal) </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+<br />
+<div class="form-actions no-color">
+    @Html.ActionLink("Volver", "CntPasajerosLlegadaSalidaDia", null, new { @class = "botonGeneral colorGris" })
+</div>
+<br /><br />

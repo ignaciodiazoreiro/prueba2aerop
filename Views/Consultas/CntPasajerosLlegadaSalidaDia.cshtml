@@ -1,0 +1,100 @@
+﻿@model Aviacion_Civil_Web.ViewModels.ConsultasCntPasajerosDiaViewModel
+@{
+    SelectList aeropuertos = ViewBag.Aeropuertos;
+    SelectList llegadaOpciones = new SelectList(
+                                new List<SelectListItem>
+                                {
+                                new SelectListItem { Selected = true, Text = "Llegada", Value = "Llegada"},
+                                new SelectListItem { Selected = false, Text = "Salida", Value = "Salida"},
+                                }, "Value", "Text");
+    SelectList diaSemana = new SelectList(
+                                new List<SelectListItem>
+                                {
+                                new SelectListItem { Selected = true, Text = "Todos", Value = "Todos"},
+                                new SelectListItem { Selected = false, Text = "Entre Semana", Value = "ES"},
+                                new SelectListItem { Selected = false, Text = "Fines de Semana", Value = "FS"},
+                                new SelectListItem { Selected = false, Text = "Lunes", Value = "Monday"},
+                                new SelectListItem { Selected = false, Text = "Martes", Value = "Tuesday"},
+                                new SelectListItem { Selected = false, Text = "Miércoles", Value = "Wednesday"},
+                                new SelectListItem { Selected = false, Text = "Jueves", Value = "Thursday"},
+                                new SelectListItem { Selected = false, Text = "Viernes", Value = "Friday"},
+                                new SelectListItem { Selected = false, Text = "Sábado", Value = "Saturday"},
+                                new SelectListItem { Selected = false, Text = "Domingo", Value = "Sunday"}
+                                }, "Value", "Text");
+
+}
+
+<h2> Cantidad de pasajeros que llegaron o salieron entre dos fechas dadas </h2>
+<h3>En general y por cada aeropuerto. Filtrado por dia especifico</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <br /> <br />
+
+    <div class="form-horizontal">
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.AeropuertoFK, "Aeropuerto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.AeropuertoFK, aeropuertos, "Todos", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AeropuertoFK, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.LlegadaOSalida, "Llegada/Salida", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.LlegadaOSalida, llegadaOpciones, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LlegadaOSalida, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrimeraFecha, "Fecha Inicial:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.PrimeraFecha, new { @type = "date", @class = "form-control datepicker", })
+                @Html.ValidationMessageFor(model => model.PrimeraFecha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SegundaFecha, "Fecha Final:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.SegundaFecha, new { @type = "date", @class = "form-control datepicker", })
+                @Html.ValidationMessageFor(model => model.SegundaFecha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.DiaEspecifico, "Día(s) de la Semana", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.DiaEspecifico, diaSemana, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DiaEspecifico, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @{
+                    string URL = Request.Url.ToString();
+                }
+                <a class="botonGeneral colorRojo" href="@URL" role="button"> Cancelar</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Consultar" class="botonGeneral colorVerde" />
+            </div>
+        </div>
+    </div>
+}
+<div class="form-actions no-color">
+    @Html.ActionLink("Volver", "Index", null, new { @class = "botonGeneral colorGris" })
+</div>
+<br /><br />
+
